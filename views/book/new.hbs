@@ -1,0 +1,72 @@
+<form action="/book/" method="post" class="user">
+    <input type="hidden" name="_csrf" value="{{csrf}}">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="name" placeholder="Nomi" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-user" name="count" placeholder="Mavjud soni" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-user" name="price" placeholder="Narhi" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="author" placeholder="Muallifi" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-user" name="year" placeholder="Chiqarilgan yili" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-user" name="page" placeholder="Sahifa soni" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="number" class="form-control form-control-user" name="genreId" placeholder="Janri" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="img" placeholder="Rasm url" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="lang" placeholder="Chop etilgan tili" required>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="form-group">
+                <textarea name="" id="" class="form-control form-control-user" rows="10" placeholder="Kitob haqida ma`lumot"></textarea>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="publisher" placeholder="Chop etuvchi" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="type" placeholder="Kitob turi" required>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="form-group">
+                <input type="text" class="form-control form-control-user" name="isbn" placeholder="ISBN" required>
+            </div>
+        </div>
+        
+    </div>
+    <button type="submit" class="btn btn-primary btn-user btn-block">Kiritish</button>
+</form>

@@ -1,0 +1,32 @@
+<div class="table-responsive">
+    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Nomi</th>
+                <th>Janri</th>
+                <th>Muallifi</th>
+                <th>Tili</th>
+                <th>Soni</th>
+                <th>Narxi</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each books}}
+            <tr>
+                <td>{{_id}}</td>
+                <td>{{name}}</td>
+                <td>{{author}}</td>
+                <td>{{type}}</td>
+                <td>{{count}}</td>
+                <td>{{price}} so'm</td>
+                <td>
+                    <a href="/book/del/{{_id}}" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+        </table>
+</div>
