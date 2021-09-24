@@ -25,7 +25,6 @@ const book = new Schema({
     },
     img: String,
     lang: String,
-    mark: Number,
     text: String,
     publisher: String,
     type: String,

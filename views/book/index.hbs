@@ -8,21 +8,23 @@
                 <th>Tili</th>
                 <th>Soni</th>
                 <th>Narxi</th>
+                <th>Turi</th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             {{#each books}}
             <tr>
-                <td>{{_id}}</td>
                 <td>{{name}}</td>
+                <td>{{genreId.name}}</td>
                 <td>{{author}}</td>
-                <td>{{type}}</td>
-                <td>{{count}}</td>
+                <td>{{lang}}</td>
+                <td>{{count}} ta</td>
                 <td>{{price}} so'm</td>
+                <td>{{type}}</td>
                 <td>
-                    <a href="/book/del/{{_id}}" class="btn btn-danger">
-                        <i class="fas fa-trash"></i>
+                    <a href="/book/{{_id}}" class="btn btn-primary">
+                        <i class="fas fa-eye"></i>
                     </a>
                 </td>
             </tr>

@@ -1,4 +1,4 @@
-<form action="/book/" method="post" class="user">
+<form action="/book/" method="post" class="user" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="{{csrf}}">
     <div class="row">
         <div class="col-lg-4">
@@ -23,7 +23,7 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <input type="number" class="form-control form-control-user" name="year" placeholder="Chiqarilgan yili" required>
+                <input type="number" class="form-control form-control-user" name="year" placeholder="Chiqarilgan yili" required size="4" max='2021' min="1920">
             </div>
         </div>
         <div class="col-lg-4">
@@ -33,12 +33,17 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <input type="number" class="form-control form-control-user" name="genreId" placeholder="Janri" required>
+                <select name="genreId">
+                    <option>Kitob janrini belgilang</option>
+                    {{#each genres}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
             </div>
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="img" placeholder="Rasm url" required>
+                <input type="file" name="img" placeholder="Rasm url" required>
             </div>
         </div>
         <div class="col-lg-4">
@@ -48,7 +53,7 @@
         </div>
         <div class="col-lg-12">
             <div class="form-group">
-                <textarea name="" id="" class="form-control form-control-user" rows="10" placeholder="Kitob haqida ma`lumot"></textarea>
+                <textarea name="text" id="" class="form-control form-control-user" rows="10" placeholder="Kitob haqida ma`lumot"></textarea>
             </div>
         </div>
         <div class="col-lg-4">
@@ -58,7 +63,13 @@
         </div>
         <div class="col-lg-4">
             <div class="form-group">
-                <input type="text" class="form-control form-control-user" name="type" placeholder="Kitob turi" required>
+                <select name="type">
+                    <option selected>Kitob turini belgilang</option>
+                    <option value="Rangli">Rangli</option>
+                    <option value="Oq-qora">Oq-qora</option>
+                    <option value="A3 format">A3 format</option>
+                    <option value="A4 format">A4 format</option>
+                </select>
             </div>
         </div>
         <div class="col-lg-4">

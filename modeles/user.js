@@ -10,13 +10,8 @@ const user = new Schema({
         type: String, 
         required: true 
     },
-    skills: { 
-        type: Array, 
-        default: [] 
-    },
-    avatar: { 
-        type: String,
-        default: '' 
-    }
+    resetToken: String,
+    resetTokenExp: Date,
+    img: String,
 })
 module.exports = model('User',user)
