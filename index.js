@@ -61,7 +61,7 @@ app.use('/profile',profileRouter)
 async function dev(){
     try {
         await mongoose.connect(keys.MONGODB_URI,{useNewUrlParser:true})
-        app.listen(3000,()=>{
+        app.listen(process.env.PORT,()=>{
             console.log('Server is running')
         })
     } catch (error) {
