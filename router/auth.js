@@ -5,8 +5,11 @@ const router = Router()
 const User = require('../modeles/user')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
-const nodemailer = require('nodemailer') // !
-const { reset } = require('nodemon')
+const nodemailer = require('nodemailer')
+
+const {
+    reset
+} = require('nodemon')
 const keys = require('../keys/pro')
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -36,14 +39,27 @@ router.get('/registration', async (req, res) => {
 })
 
 router.post('/reg', async (req, res) => {
-    const {name,email,lname,password,rpassword} = req.body
-    const reallyMen = await User.findOne({email})
+    const {
+        name,
+        email,
+        lname,
+        password,
+        rpassword
+    } = req.body
+    const reallyMen = await User.findOne({
+        email
+    })
     if (reallyMen) {
         req.flash('error', 'Bunday emaildagi foydalanuvchi mavjud!')
         res.redirect('/auth/registration')
     } else {
         const hashPass = await bcrypt.hash(password, 10)
-        const really = await new User({name,lname,email,password: hashPass})
+        const really = await new User({
+            name,
+            lname,
+            email,
+            password: hashPass
+        })
         await really.save()
         await transporter.sendMail({
             from: keys.SYSTEM_EMAIL,
@@ -51,6 +67,7 @@ router.post('/reg', async (req, res) => {
             subject: 'Ro`yhatdan o`tildi',
             html: `<h1>Hurmatli ${name}, siz tizimda ro'yhatdan o'tdingiz!</h1>`
         });
+
         req.flash('success', 'Ro`yhatdan muvaffaqiyatli o`tildi!')
         res.redirect('/auth/login')
 
@@ -91,89 +108,98 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.get('/reset',(req,res)=>{
-    res.render('auth/reset',{
+router.get('/reset', (req, res) => {
+    res.render('auth/reset', {
         layout: 'nohead',
         title: 'Mahfiy kalitni tiklash'
     })
 })
 
-router.post('/reset',async(req,res)=>{
-   try {
-       const email = req.body.email
-       const resetBoy = await User.findOne({email})
-       if (resetBoy){
-            crypto.randomBytes(30,async(err,buffer)=>{
-               if (err){
-                   req.flash('error','Tizimda xatolik bo`ldi')
-                   res.redirect('/auth/login')
-               } else {
-                   const token = buffer.toString('hex')
-                   resetBoy.resetToken = token
-                   resetBoy.resetTokenExp = Date.now() + 60 * 60 * 1000
-                   await resetBoy.save()
-                   await transporter.sendMail({
+router.post('/reset', async (req, res) => {
+    try {
+        const email = req.body.email
+        const resetBoy = await User.findOne({
+            email
+        })
+        if (resetBoy) {
+            crypto.randomBytes(30, async (err, buffer) => {
+                if (err) {
+                    req.flash('error', 'Tizimda xatolik bo`ldi')
+                    res.redirect('/auth/login')
+                } else {
+                    const token = buffer.toString('hex')
+                    resetBoy.resetToken = token
+                    resetBoy.resetTokenExp = Date.now() + 60 * 60 * 1000
+                    await resetBoy.save()
+                    await transporter.sendMail({
                         from: keys.SYSTEM_EMAIL,
                         to: email,
                         subject: 'Mahfiy kalitni tiklash',
                         html: `<h1>Hurmatli foydalanuvchi tizimda mahfiy kalitni tiklash holati bo'lyapdi!</h1>
                             <a href="http://localhost:3000/auth/password/${token}">Tizimga o'tish</a>`
                     })
-                    req.flash('success','Mahfiy kalitni tiklash ko`rsatmasi emailga jo`natildi!')
+
+                    req.flash('success', 'Mahfiy kalitni tiklash ko`rsatmasi emailga jo`natildi!')
                     res.redirect('/auth/login')
-               }
-           })
-       } else {
-           req.flash('error','Bunday email tizimda yo`q')
-           res.redirect('/auth/login')
-       }
-   } catch (error) { console.log(e) }
+                }
+            })
+        } else {
+            req.flash('error', 'Bunday email tizimda yo`q')
+            res.redirect('/auth/login')
+        }
+    } catch (error) {
+        console.log(e)
+    }
 })
 
-router.get('/password/:token',async(req,res)=>{
-    if (!req.params.token){
-        req.flash('error','Havoladaga gap bor')
+router.get('/password/:token', async (req, res) => {
+    if (!req.params.token) {
+        req.flash('error', 'Havoladaga gap bor')
         res.redirect('/auth/login')
     } else {
         const token = req.params.token
         const user = await User.findOne({
             resetToken: token,
-            resetTokenExp: {$gt: Date.now()}
+            resetTokenExp: {
+                $gt: Date.now()
+            }
         })
-        if (user){
-            res.render('auth/password',{
+        if (user) {
+            res.render('auth/password', {
                 layout: 'nohead',
                 title: 'Yangi mahfiy kalitni yozing!',
                 userId: user._id,
                 token: token,
             })
         } else {
-            req.flash('error','Havola muddati tugagan!')
+            req.flash('error', 'Havola muddati tugagan!')
             res.redirect('/auth/login')
         }
     }
 })
 
-router.post('/password',async(req,res)=>{
+router.post('/password', async (req, res) => {
     try {
         const user = await User.findOne({
             _id: req.body._id,
             resetToken: req.body.token,
-            resetTokenExp: {$gt: Date.now()}
+            resetTokenExp: {
+                $gt: Date.now()
+            }
         })
-        if (user){
+        if (user) {
             user.password = await bcrypt.hash(req.body.password, 10)
             user.resetToken = undefined
             user.resetTokenExp = undefined
             await user.save()
-            req.flash('success','Mahfiy kalit muvafaqqiyatli o`zgardi')
+            req.flash('success', 'Mahfiy kalit muvafaqqiyatli o`zgardi')
             res.redirect('/auth/login')
         } else {
-            req.flash('error','Mahfiy kalitni o`zgartirish xatolik bo`ldi')
+            req.flash('error', 'Mahfiy kalitni o`zgartirish xatolik bo`ldi')
             res.redirect('/auth/login')
         }
     } catch (error) {
-        
+
     }
 })
 
