@@ -11,6 +11,7 @@ router.get('/', auth, (req, res) => {
         isHome: true
     })
 })
+
 router.get('/about', (req, res) => {
     res.render('about', {
         title: 'Biz haqimizda',

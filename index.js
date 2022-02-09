@@ -8,9 +8,10 @@ const flash = require('connect-flash') // !
 const helmet = require('helmet')
 const compression = require('compression')
 // Routerlar
+const adminpageRouter = require('./router/admin/adminpage')
+const authRouter = require('./router/admin/auth')
 const pageRouter = require('./router/page')
-const usersRouter = require('./router/users')
-const authRouter = require('./router/auth')
+// const usersRouter = require('./router/users')
 const bookRouter = require('./router/book')
 const genreRouter = require('./router/genre')
 const profileRouter = require('./router/profile')
@@ -22,7 +23,7 @@ const keys = require('./keys/pro')
 
 const app = express()
 const hbs = exphbs.create({
-    defaultLayout: 'main',
+    defaultLayout: 'admin',
     extname: 'hbs'
 })
 app.engine('hbs', hbs.engine)
@@ -56,17 +57,16 @@ app.use(helmet())
 app.use(compression())
 
 app.use(pageRouter)
-app.use('/users', usersRouter)
-app.use('/auth', authRouter)
+app.use('/admin', adminpageRouter)
+// app.use('/users', usersRouter)
+app.use('/admin/auth', authRouter)
 app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
 
 app.all('*', (req, res) => {
-    res.redirect("/auth/login");
+    res.redirect("/admin/auth/login");
 });
-
-
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {

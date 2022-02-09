@@ -2,7 +2,7 @@ const {
     Router
 } = require('express')
 const router = Router()
-const User = require('../modeles/user')
+const User = require('../../modeles/user')
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 const nodemailer = require('nodemailer')
@@ -10,7 +10,7 @@ const nodemailer = require('nodemailer')
 const {
     reset
 } = require('nodemon')
-const keys = require('../keys/pro')
+const keys = require('../../keys/pro')
 const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 587,
@@ -21,7 +21,7 @@ const transporter = nodemailer.createTransport({
 });
 
 router.get('/login', async (req, res) => {
-    res.render('auth/login', {
+    res.render('admin/auth/login', {
         title: 'Tizimga kirish',
         error: req.flash('error'),
         success: req.flash('success'),
@@ -30,7 +30,7 @@ router.get('/login', async (req, res) => {
 })
 
 router.get('/registration', async (req, res) => {
-    res.render('auth/reg', {
+    res.render('admin/auth/reg', {
         title: 'Ro`yhatdan o`tish',
         error: req.flash('error'),
         success: req.flash('success'),
@@ -51,7 +51,7 @@ router.post('/reg', async (req, res) => {
     })
     if (reallyMen) {
         req.flash('error', 'Bunday emaildagi foydalanuvchi mavjud!')
-        res.redirect('/auth/registration')
+        res.redirect('/admin/auth/registration')
     } else {
         const hashPass = await bcrypt.hash(password, 10)
         const really = await new User({
@@ -69,7 +69,7 @@ router.post('/reg', async (req, res) => {
         });
 
         req.flash('success', 'Ro`yhatdan muvaffaqiyatli o`tildi!')
-        res.redirect('/auth/login')
+        res.redirect('/admin/auth/login')
 
     }
 })
@@ -77,7 +77,7 @@ router.post('/reg', async (req, res) => {
 router.get('/logout', (req, res) => {
     req.session.destroy((err) => {
         if (err) throw err
-        res.redirect('/auth/login')
+        res.redirect('/admin/auth/login')
     })
 })
 
@@ -96,20 +96,20 @@ router.post('/login', async (req, res) => {
             req.session.isAuthed = true
             req.session.save((err) => {
                 if (err) throw err
-                else res.redirect('/')
+                else res.redirect('/admin')
             })
         } else {
             req.flash('error', 'Mahfiy kalit notogri kiritildi')
-            res.redirect('/auth/login')
+            res.redirect('/admin/auth/login')
         }
     } else {
         req.flash('error', 'Bunday emaildagi foydalanuvchi mavjud emas')
-        res.redirect('/auth/login')
+        res.redirect('/admin/auth/login')
     }
 })
 
 router.get('/reset', (req, res) => {
-    res.render('auth/reset', {
+    res.render('admin/auth/reset', {
         layout: 'nohead',
         title: 'Mahfiy kalitni tiklash'
     })
@@ -125,7 +125,7 @@ router.post('/reset', async (req, res) => {
             crypto.randomBytes(30, async (err, buffer) => {
                 if (err) {
                     req.flash('error', 'Tizimda xatolik bo`ldi')
-                    res.redirect('/auth/login')
+                    res.redirect('/admin/auth/login')
                 } else {
                     const token = buffer.toString('hex')
                     resetBoy.resetToken = token
@@ -140,12 +140,12 @@ router.post('/reset', async (req, res) => {
                     })
 
                     req.flash('success', 'Mahfiy kalitni tiklash ko`rsatmasi emailga jo`natildi!')
-                    res.redirect('/auth/login')
+                    res.redirect('/admin/auth/login')
                 }
             })
         } else {
             req.flash('error', 'Bunday email tizimda yo`q')
-            res.redirect('/auth/login')
+            res.redirect('/admin/auth/login')
         }
     } catch (error) {
         console.log(e)
@@ -155,7 +155,7 @@ router.post('/reset', async (req, res) => {
 router.get('/password/:token', async (req, res) => {
     if (!req.params.token) {
         req.flash('error', 'Havoladaga gap bor')
-        res.redirect('/auth/login')
+        res.redirect('/admin/auth/login')
     } else {
         const token = req.params.token
         const user = await User.findOne({
@@ -165,7 +165,7 @@ router.get('/password/:token', async (req, res) => {
             }
         })
         if (user) {
-            res.render('auth/password', {
+            res.render('admin/auth/password', {
                 layout: 'nohead',
                 title: 'Yangi mahfiy kalitni yozing!',
                 userId: user._id,
@@ -173,7 +173,7 @@ router.get('/password/:token', async (req, res) => {
             })
         } else {
             req.flash('error', 'Havola muddati tugagan!')
-            res.redirect('/auth/login')
+            res.redirect('/admin/auth/login')
         }
     }
 })
@@ -193,14 +193,12 @@ router.post('/password', async (req, res) => {
             user.resetTokenExp = undefined
             await user.save()
             req.flash('success', 'Mahfiy kalit muvafaqqiyatli o`zgardi')
-            res.redirect('/auth/login')
+            res.redirect('/admin/auth/login')
         } else {
             req.flash('error', 'Mahfiy kalitni o`zgartirish xatolik bo`ldi')
-            res.redirect('/auth/login')
+            res.redirect('/admin/auth/login')
         }
-    } catch (error) {
-
-    }
+    } catch (error) {}
 })
 
 

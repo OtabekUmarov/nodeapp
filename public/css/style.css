@@ -44,3 +44,7 @@ h1,
 table.table td:first-child{
     text-transform: capitalize;
 }
+
+.sidebar .nav-item .nav-link span{
+    font-size: 16px;
+}

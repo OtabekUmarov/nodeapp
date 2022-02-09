@@ -1,21 +1,21 @@
 {{#if error}}
-  <div class="row justify-content-center mb-2">
+<div class="row justify-content-center mb-2">
     <div class="col-xl-5 col-lg-5 col-md-5">
-      <div class="card bg-danger text-white shadow">
-          <div class="card-body">{{error}}</div>
-      </div>
+        <div class="card bg-danger text-white shadow">
+            <div class="card-body">{{error}}</div>
+        </div>
     </div>
-  </div>
-  {{/if}}
-  {{#if success}}
-  <div class="row justify-content-center mb-2">
+</div>
+{{/if}}
+{{#if success}}
+<div class="row justify-content-center mb-2">
     <div class="col-xl-5 col-lg-5 col-md-5">
-      <div class="card bg-success text-white shadow">
-          <div class="card-body">{{success}}</div>
-      </div>
+        <div class="card bg-success text-white shadow">
+            <div class="card-body">{{success}}</div>
+        </div>
     </div>
-  </div>
-  {{/if}}
+</div>
+{{/if}}
 <form action="/profile/save" method="POST" enctype="multipart/form-data">
     <div class="row">
         <div class="col-lg-3">
@@ -51,4 +51,3 @@
         O'zgarishlarni saqlash
     </button>
 </form>
-
