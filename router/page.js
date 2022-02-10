@@ -5,9 +5,10 @@ const router = Router()
 const auth = require('../middleware/auth')
 const Book = require('../modeles/book')
 
-router.get('/', auth, (req, res) => {
+router.get('/', (req, res) => {
     res.render('index', {
         title: 'Bosh sahifa',
+        layout: "site",
         isHome: true
     })
 })

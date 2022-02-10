@@ -48,3 +48,23 @@ table.table td:first-child{
 .sidebar .nav-item .nav-link span{
     font-size: 16px;
 }
+
+/* .header {
+    background: #ccc;
+    padding: 20px 0;
+}
+.header ul {
+    margin: 0;
+    list-style-type: none;
+    display: flex;
+}
+.header-logo {
+    font-size: 24px;
+}
+.header ul li {
+    padding: 0 10px;
+}
+.header ul li a {
+    color: #000;
+    font-size: 18px;
+} */
