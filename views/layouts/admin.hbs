@@ -7,7 +7,12 @@
             <div id="content">
                 {{> admintop}}
                 <div class="container-fluid">
-                    <h1 class="h3 mb-4 text-gray-800">{{title}}</h1>
+                    <div class="mb-4 d-flex justify-content-between">
+                        <h1 class="h3  text-gray-800">{{title}}</h1>
+                        {{#if add}}
+                        <a href="{{add}}" class="btn btn-primary">Qo'shish</a>
+                        {{/if}}
+                    </div>
                     {{{body}}}
                 </div>
             </div>
