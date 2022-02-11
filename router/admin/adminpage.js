@@ -7,7 +7,7 @@ const auth = require('../../middleware/auth')
 
 router.get('/', auth, (req, res) => {
   res.render('admin', {
-    title: 'Bosh sahifaaa',
+    title: 'Bosh sahifa',
     adminHome: true
   })
 })

@@ -11,6 +11,10 @@ const compression = require('compression')
 const adminpageRouter = require('./router/admin/adminpage')
 const authRouter = require('./router/admin/auth')
 const usersRouter = require('./router/admin/users')
+const puzzleRouter = require('./router/admin/puzzle')
+const subjectRouter = require('./router/admin/subject')
+
+
 const pageRouter = require('./router/page')
 // const usersRouter = require('./router/users')
 const bookRouter = require('./router/book')
@@ -27,6 +31,8 @@ const hbs = exphbs.create({
     defaultLayout: 'admin',
     extname: 'hbs'
 })
+
+
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
 app.set('views', 'views')
@@ -60,6 +66,10 @@ app.use(compression())
 app.use(pageRouter)
 app.use('/admin', adminpageRouter)
 app.use('/admin/users', usersRouter)
+app.use('/admin/puzzle', puzzleRouter)
+app.use('/admin/subject', subjectRouter)
+
+
 // app.use('/users', usersRouter)
 app.use('/admin/auth', authRouter)
 app.use('/book', bookRouter)
@@ -69,6 +79,7 @@ app.use('/profile', profileRouter)
 app.all('*', (req, res) => {
     res.redirect("/admin/auth/login");
 });
+
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {

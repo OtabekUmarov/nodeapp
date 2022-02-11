@@ -12,7 +12,8 @@ router.get('/', auth, async (req, res) => {
     res.render('admin/users', {
         title: 'Foydalanuvchilar',
         add: '/admin/users/create',
-        users
+        users,
+        adminUser:true
     })
 })
 router.post('/', auth, async (req, res) => {
@@ -88,10 +89,10 @@ router.post('/save', auth, async (req, res) => {
         email,
         img
     }
-    console.log(user);
-    // await User.findByIdAndUpdate({
-    //     _id
-    // }, user)
+    // console.log(user);
+    await User.findByIdAndUpdate({
+        _id
+    }, user)
     res.redirect('/admin/users')
 })
 
