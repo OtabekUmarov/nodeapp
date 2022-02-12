@@ -6,9 +6,13 @@ const auth = require('../middleware/auth')
 const Book = require('../modeles/book')
 
 router.get('/', (req, res) => {
+    req.flash("success", "Ok")
+    req.flash("error", "Error")
     res.render('index', {
         title: 'Bosh sahifa',
         layout: "site",
+        success: req.flash('success'),
+        error: req.flash('error'),
         isHome: true
     })
 })
@@ -16,6 +20,8 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
     res.render('about', {
         title: 'Biz haqimizda',
+        layout: "site",
+        inner: "inner_page",
         isHome: true
     })
 })

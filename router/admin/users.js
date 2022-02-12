@@ -13,7 +13,7 @@ router.get('/', auth, async (req, res) => {
         title: 'Foydalanuvchilar',
         add: '/admin/users/create',
         users,
-        adminUser:true
+        adminUser: true
     })
 })
 router.post('/', auth, async (req, res) => {
@@ -76,7 +76,6 @@ router.post('/save', auth, async (req, res) => {
     if (req && req.file && req.file.path) {
         img = req && req.file && req.file.path
     }
-    console.log(img);
     let pass = ''
     if (respassword) {
         let hashPass = await bcrypt.hash(respassword, 10)

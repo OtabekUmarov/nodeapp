@@ -1,17 +1,51 @@
 {{> sitehead }}
 
-<body id="page-top">
 
-        {{> sitenav}}
-{{{body}}}
+
+<body id="{{inner}}">
+
+  {{> sitenav}}
+  {{{body}}}
   {{!-- <div class="container">
   </div> --}}
 
-    {{!-- <a class="scroll-to-top rounded" href="#page-top">
+  {{!-- <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a> --}}
-    {{> sitefooter}}
-    {{> sitescripts}}
+  {{#if error}}
+  <div class="toast error">
+    <div class="card bg-danger text-white">
+      <div class="card-body">{{error}}</div>
+    </div>
+  </div>
+  {{/if}}
+  {{#if success}}
+  <div class="toast ">
+    <div class="card bg-success text-white">
+      <div class="card-body">{{success}}</div>
+    </div>
+  </div>
+  {{/if}}
+  {{> sitefooter}}
+  {{> sitescripts}}
+
+  <script>
+    let toast = document.querySelectorAll(".toast")
+    let index = 0
+    toast.forEach((el) => {
+      if(index==0) {
+        setTimeout(() => {
+        el.classList.add('hide')
+      }, 3000);
+      } else {
+        setTimeout(() => {
+        el.classList.add('hide')
+      }, 3500);
+      }
+      index ++
+    })
+    console.log(toast)
+  </script>
 </body>
 
 </html>

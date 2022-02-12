@@ -771,7 +771,7 @@ form#commant_form div.field textarea.custom_field {
 }
 
 body#inner_page header.header {
-    background-image: url('images/slider_img.png');
+    background-image: url('/img/slider_img.png');
     background-size: 100% auto;
     position: relative;
 }
@@ -4582,4 +4582,12 @@ form#commant_form div.field textarea.custom_field {
     margin-top: 20px;
 }
 
-
+/* .card,
+.toast {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    min-width: 100px;
+    padding: 20px;
+    min-height: 100px;
+} */
