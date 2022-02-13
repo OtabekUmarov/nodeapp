@@ -1,0 +1,35 @@
+<section class="main_full inner_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="full">
+        <h3>{{title}}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- about section -->
+<section class="layout_padding section about_dottat">
+  <div class="container">
+    {{!-- {{#each text}} --}}
+    <p>{{text.question}}</p>
+    <p>
+      {{text.answer}}
+
+    </p>
+    <form action="/answer/{{text._id}}" method="post" class="user">
+      <input type="hidden" name="_csrf" value="{{csrf}}" />
+      <input type="hidden" name="qu_id" value="{{qu_id}}" />
+      <div class="form-group">
+        <label>
+          Javobni kiriting
+          <input type="text" class="form-control form-control-user" name="answer" placeholder="Javobni kiriting"
+            required />
+        </label>
+      </div>
+      <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Kiritish</button>
+    </form>
+    {{!-- {{/each}} --}}
+  </div>
+</section>
