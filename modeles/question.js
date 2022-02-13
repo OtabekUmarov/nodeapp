@@ -12,7 +12,11 @@ const puzzle = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'Subject'
   },
-  img: String,
+  type: {
+    type: Number,
+    default: 0
+  },
+  question: String,
 })
 
 

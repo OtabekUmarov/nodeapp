@@ -1,10 +1,5 @@
 <div class="table-responsive">
-  <table
-    class="table table-bordered"
-    id="dataTable"
-    width="70%"
-    cellspacing="0"
-  >
+  <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
     <thead>
       <tr>
         <th>Savol</th>
@@ -14,36 +9,28 @@
       </tr>
     </thead>
     <tbody>
-      {{#each puzzle}}
-        <tr>
-          <td width="300px"><img width="300px" src="/{{img}}" alt="" /></td>
-          <td>{{answer}}</td>
-          <td>Rasmli</td>
-          <td width="150px">
-            <a
-              href="/admin/puzzle/puzzleimg/delete/{{_id}}"
-              class="btn btn-primary"
-            >
-              <i class="fas fa-trash"></i>
-            </a>
-          </td>
-        </tr>
+      {{#each question}}
+      {{#if type}}
+      <td>{{question}}</td>
+
+      {{else}}
+      <td width="300px"><img width="300px" src="/{{question}}" alt="" /></td>
+
+      {{/if}}
+      <td>{{answer}}</td>
+      {{#if type}}
+      <td>Matnli</td>
+      {{else}}
+      <td>Rasmli</td>
+      {{/if}}
+      <td width="150px">
+        <a href="/admin/puzzle/puzzleimg/delete/{{_id}}" class="btn btn-primary">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      </tr>
       {{/each}}
-      {{#each text}}
-        <tr>
-          <td>{{question}}</td>
-          <td>{{answer}}</td>
-          <td>Matnli</td>
-          <td width="150px">
-            <a
-              href="/admin/puzzle/puzzleimg/delete/{{_id}}"
-              class="btn btn-primary"
-            >
-              <i class="fas fa-trash"></i>
-            </a>
-          </td>
-        </tr>
-      {{/each}}
+
     </tbody>
   </table>
 </div>

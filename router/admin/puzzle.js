@@ -3,8 +3,7 @@ const {
 } = require('express')
 const router = Router()
 const Subject = require('../../modeles/subject')
-const Puzzle = require('../../modeles/puzzle')
-const Text = require('../../modeles/text')
+const Question = require('../../modeles/question')
 
 
 const auth = require('../../middleware/auth')
@@ -15,7 +14,7 @@ router.get('/', auth, async (req, res) => {
   res.render('admin/puzzle', {
     title: 'Boshqotirmalar',
     subject,
-    adminPuzzle: true
+    adminQuestion: true
   })
 })
 
@@ -43,17 +42,17 @@ router.get('/puzzleimg/delete/:id', async (req, res) => {
 })
 router.get('/:id/subject', auth, async (req, res) => {
   let id = req.params.id
-  const puzzle = await Puzzle.find({
+  const question = await Question.find({
     subjectId: id
   }).lean()
-  const text = await Text.find({
+  const text = await Question.find({
     subjectId: id
   }).lean()
   res.render('admin/puzzle/view', {
-    title: 'Puzzle',
-    puzzle,
+    title: 'Question',
+    question,
     text,
-    adminPuzzle: true
+    adminQuestion: true
   })
 })
 router.post('/', auth, async (req, res) => {
@@ -61,11 +60,11 @@ router.post('/', auth, async (req, res) => {
     answer,
     subjectId
   } = req.body
-  const img = req.file.path
-  const puzzle = await new Puzzle({
+  const question = req.file.path
+  const puzzle = await new Question({
     answer,
     subjectId,
-    img
+    question
   })
   await puzzle.save()
   res.redirect('/admin/puzzle')
@@ -73,7 +72,7 @@ router.post('/', auth, async (req, res) => {
 })
 router.post('/text', auth, async (req, res) => {
 
-  const text = await new Text(req.body)
+  const text = await new Question(req.body)
   await text.save()
   res.redirect('/admin/puzzle')
 
