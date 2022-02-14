@@ -37,7 +37,7 @@ router.get('/:id/text', auth, async (req, res) => {
   })
 })
 router.get('/puzzleimg/delete/:id', async (req, res) => {
-  await Puzzle.findByIdAndDelete(req.params.id)
+  await Question.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
 router.get('/:id/subject', auth, async (req, res) => {

@@ -66,10 +66,6 @@ router.get('/subject/:id', async (req, res) => {
 
 
 
-
-
-
-
 router.post('/answer/:id', async (req, res) => {
     let _id = req.params.id
     const {
