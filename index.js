@@ -76,9 +76,9 @@ app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
 
-app.all('*', (req, res) => {
-    res.redirect("/admin/auth/login");
-});
+// app.all('*', (req, res) => {
+//     res.redirect("/admin/auth/login");
+// });
 
 async function dev() {
     try {

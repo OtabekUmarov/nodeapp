@@ -22,7 +22,14 @@ router.get('/create', auth, (req, res) => {
   })
 })
 router.post('/', auth, async (req, res) => {
-  const sub = await new Subject(req.body)
+  const {
+    name
+  } = req.body
+  let img = req.file.path
+  const sub = await new Subject({
+    name,
+    img
+  })
   await sub.save()
   res.redirect('/admin/subject')
 

@@ -32,9 +32,15 @@ router.get('/about', (req, res) => {
 })
 
 router.get('/subjects', async (req, res) => {
-    const subject = await Subject.find().lean()
+    let subject = await Subject.find().lean()
+    subject.forEach(async (el) => {
+        let count = await Question.findOne({
+            subjectId: el._id
+        }).count()
+        el.count = count
+    });
     res.render('subject', {
-        title: 'Boshqotirmalar',
+        title: 'Fanlar',
         layout: "site",
         subject,
         inner: "inner_page",
@@ -43,28 +49,25 @@ router.get('/subjects', async (req, res) => {
 })
 router.get('/subject/:id', async (req, res) => {
     const id = req.params.id
-    // const puzzle = await Puzzle.find({
-    //     subjectId: id
-    // }).lean()
     let count = await Question.count()
     let random = Math.floor(Math.random() * count)
-    const text = await Question.findOne({
+    let subject = await Subject.findById({
+        _id: id
+    })
+    const question = await Question.findOne({
         subjectId: id
     }).skip(random).lean()
     res.render('question', {
-        title: 'Boshqotirma',
+        title: subject.name + ' fanidan boshqotirma',
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
-        // puzzle,
-        text,
+        question,
         qu_id: id,
         inner: "inner_page",
         isHome: true
     })
 })
-
-
 
 router.post('/answer/:id', async (req, res) => {
     let _id = req.params.id
@@ -72,13 +75,9 @@ router.post('/answer/:id', async (req, res) => {
         answer
     } = req.body
     const question = await Question.findById(_id)
-    let c = "0"
     if (answer == question.answer) {
         req.flash("success", "Togri javob")
-        console.log("success");
-        // console.log(req.flash("answer"));
     } else {
-        console.log("notogri");
         req.flash("error", "notogri javob")
     }
     res.redirect('/subject/' + req.body.qu_id)

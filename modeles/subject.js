@@ -7,5 +7,6 @@ const subject = new Schema({
     type: String,
     required: true
   },
+  img: String
 })
 module.exports = model('Subject', subject)

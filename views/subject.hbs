@@ -12,10 +12,24 @@
 <!-- about section -->
 <section class="layout_padding section about_dottat">
   <div class="container">
-    {{#each subject}}
-    <a href="/subject/{{_id}}">
-      {{name}}
-    </a>
-    {{/each}}
+    <div class="row">
+      {{#each subject}}
+      <div class="col-lg-4 col-md-6">
+        <div class="subject">
+          <div class="subject-img">
+            <img src="{{img}}" alt="">
+          </div>
+          <div class="subject-title">
+            {{name}}
+          </div>
+          <div class="subject-stitle">
+            Boshqotirmalar soni: {{count}}
+          </div>
+          <a href="/subject/{{_id}}" class="subject-link">Boshqotirma yechish</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+
   </div>
 </section>
