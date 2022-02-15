@@ -159,3 +159,24 @@ form.user .form-control-user{
 .answer label input{
     margin-top: 10px;
 }
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 300px !important;
+    transition: 0.3s;
+}
+#wrapper #content-wrapper #content {
+    padding-left: 300px ;
+    transition: 0.3s;
+    height: calc(100vh - 80px);
+}
+.sidebar-toggled 
+#wrapper #content-wrapper #content {
+    padding-left: 105px;
+}
+.sidebar-toggled .sidebar {
+    width: 105px !important;
+}

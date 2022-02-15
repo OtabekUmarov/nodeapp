@@ -21,6 +21,13 @@ router.get('/create', auth, (req, res) => {
     adminSubject: true,
   })
 })
+router.get('/delete/:id', auth, async (req, res) => {
+  let _id = req.params.id
+  await Subject.findByIdAndDelete(
+    _id
+  )
+  res.redirect('/admin/subject')
+})
 router.post('/', auth, async (req, res) => {
   const {
     name
