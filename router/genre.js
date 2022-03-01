@@ -2,7 +2,7 @@ const {
     Router
 } = require('express')
 const router = Router()
-const Genre = require('../modeles/genre')
+// const Genre = require('../modeles/genre')
 
 router.get('/', async (req, res) => {
     const genres = await Genre.find().lean()

@@ -1,0 +1,50 @@
+<section class="main_full inner_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="full">
+        <h3>{{title}}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="layout_padding section about_dottat">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6">
+        <div class="mb-2">
+          {{#if question}}
+          <div class="questions mb-4 p-2">
+            <h3>Rasmli boshqotirmalar</h3>
+          </div>
+          {{/if}}
+          {{#if text}}
+          <div class="questions mb-4 p-2">
+            <h3>Matnli boshqotirmalar</h3>
+          </div>
+          {{/if}}
+          <div class="answer">
+            {{!-- <form action="/answer/{{question._id}}" method="post" class="user">
+              <input type="hidden" name="_csrf" value="{{csrf}}" />
+              <input type="hidden" name="qu_id" value="{{qu_id}}" />
+              <div class="form-group">
+                <label>
+                  Javobni kiriting
+                  <input type="text" class="form-control form-control-user" name="answer" placeholder="Javobni kiriting"
+                    required />
+                </label>
+              </div>
+              <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Tekshirish</button>
+            </form> --}}
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5"></div>
+
+    </div>
+
+  </div>
+</section>

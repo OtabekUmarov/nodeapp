@@ -4,6 +4,7 @@ const {
 const router = Router()
 const Subject = require('../../modeles/subject')
 const Question = require('../../modeles/question')
+const Text = require('../../modeles/text')
 
 
 const auth = require('../../middleware/auth')
@@ -40,12 +41,16 @@ router.get('/puzzleimg/delete/:id', async (req, res) => {
   await Question.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+router.get('/text/delete/:id', async (req, res) => {
+  await Text.findByIdAndDelete(req.params.id)
+  res.redirect('/admin/puzzle')
+})
 router.get('/:id/subject', auth, async (req, res) => {
   let id = req.params.id
   const question = await Question.find({
     subjectId: id
   }).lean()
-  const text = await Question.find({
+  const text = await Text.find({
     subjectId: id
   }).lean()
   res.render('admin/puzzle/view', {
@@ -72,7 +77,7 @@ router.post('/', auth, async (req, res) => {
 })
 router.post('/text', auth, async (req, res) => {
 
-  const text = await new Question(req.body)
+  const text = await new Text(req.body)
   await text.save()
   res.redirect('/admin/puzzle')
 

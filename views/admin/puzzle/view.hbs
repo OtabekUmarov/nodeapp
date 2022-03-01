@@ -10,19 +10,9 @@
     </thead>
     <tbody>
       {{#each question}}
-      {{#if type}}
-      <td>{{question}}</td>
-
-      {{else}}
       <td width="300px"><img width="300px" src="/{{question}}" alt="" /></td>
-
-      {{/if}}
       <td>{{answer}}</td>
-      {{#if type}}
-      <td>Matnli</td>
-      {{else}}
       <td>Rasmli</td>
-      {{/if}}
       <td width="150px">
         <a href="/admin/puzzle/puzzleimg/delete/{{_id}}" class="btn btn-primary">
           <i class="fas fa-trash"></i>
@@ -31,6 +21,17 @@
       </tr>
       {{/each}}
 
+      {{#each text}}
+      <td>{{question}}</td>
+      <td>{{answer}}</td>
+      <td>Matnli</td>
+      <td width="150px">
+        <a href="/admin/puzzle/text/delete/{{_id}}" class="btn btn-primary">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

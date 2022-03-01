@@ -171,7 +171,7 @@ form.user .form-control-user{
 #wrapper #content-wrapper #content {
     padding-left: 300px ;
     transition: 0.3s;
-    height: calc(100vh - 80px);
+    /* height: calc(100vh - 80px); */
 }
 .sidebar-toggled 
 #wrapper #content-wrapper #content {

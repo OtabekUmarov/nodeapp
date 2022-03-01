@@ -2,10 +2,10 @@ const {
     Router
 } = require('express')
 const router = Router()
-const auth = require('../middleware/auth')
-const Book = require('../modeles/book')
+// const auth = require('../middleware/auth')
 const Subject = require('../modeles/subject')
 const Question = require('../modeles/question')
+const Text = require('../modeles/text')
 
 
 
@@ -47,27 +47,54 @@ router.get('/subjects', async (req, res) => {
         isHome: true
     })
 })
+
 router.get('/subject/:id', async (req, res) => {
     const id = req.params.id
-    let count = await Question.count()
-    let random = Math.floor(Math.random() * count)
+    let question = await Question.find({
+        subjectId: id
+    }).count()
+    let text = await Text.find({
+        subjectId: id
+    }).count()
+
     let subject = await Subject.findById({
         _id: id
     })
-    const question = await Question.findOne({
-        subjectId: id
-    }).skip(random).lean()
-    res.render('question', {
-        title: subject.name + ' fanidan boshqotirma',
+
+    res.render('subjectId', {
+        title: subject.name  + ' fanidan boshqotirma',
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
-        question,
-        qu_id: id,
         inner: "inner_page",
-        isHome: true
+        isHome: true,
+        question,
+        text
+
     })
 })
+
+// router.get('/subject/:id', async (req, res) => {
+//     const id = req.params.id
+//     let count = await Question.count()
+//     let random = Math.floor(Math.random() * count)
+//     let subject = await Subject.findById({
+//         _id: id
+//     })
+//     const question = await Question.findOne({
+//         subjectId: id
+//     }).skip(random).lean()
+//     res.render('question', {
+//         title: subject.name + ' fanidan boshqotirma',
+//         layout: "site",
+//         success: req.flash('success'),
+//         error: req.flash('error'),
+//         question,
+//         qu_id: id,
+//         inner: "inner_page",
+//         isHome: true
+//     })
+// })
 
 router.post('/answer/:id', async (req, res) => {
     let _id = req.params.id
