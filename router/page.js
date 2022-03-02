@@ -52,24 +52,26 @@ router.get('/subject/:id', async (req, res) => {
     const id = req.params.id
     let question = await Question.find({
         subjectId: id
-    }).count()
+    }).lean()
     let text = await Text.find({
         subjectId: id
-    }).count()
+    }).lean()
 
     let subject = await Subject.findById({
         _id: id
-    })
-
+    }).lean()
+    console.log("subject", subject);
     res.render('subjectId', {
-        title: subject.name  + ' fanidan boshqotirma',
+        title: subject.name + ' fani',
         layout: "site",
         success: req.flash('success'),
         error: req.flash('error'),
         inner: "inner_page",
         isHome: true,
         question,
-        text
+        text,
+        id,
+        subject
 
     })
 })

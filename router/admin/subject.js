@@ -30,11 +30,13 @@ router.get('/delete/:id', auth, async (req, res) => {
 })
 router.post('/', auth, async (req, res) => {
   const {
-    name
+    name,
+    content
   } = req.body
   let img = req.file.path
   const sub = await new Subject({
     name,
+    content,
     img
   })
   await sub.save()

@@ -180,3 +180,29 @@ form.user .form-control-user{
 .sidebar-toggled .sidebar {
     width: 105px !important;
 }
+
+.big-img {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+.big-img img {
+    width: 100%;
+}
+
+.side-left {
+    background-color: #e7e7e7;
+    padding: 15px;
+    border-radius: 5px;
+}
+.side-left-item {
+    padding: 10px;
+    margin-bottom: 5px;
+    font-size: 18px;
+    transition: 0.3s;
+    border-radius: 5px;
+}
+.side-left-item:hover {
+    background-color: #fff;
+
+}

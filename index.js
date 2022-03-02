@@ -16,6 +16,7 @@ const subjectRouter = require('./router/admin/subject')
 
 
 const pageRouter = require('./router/page')
+const subjectsiteRouter = require('./router/subject')
 // const usersRouter = require('./router/users')
 const bookRouter = require('./router/book')
 const genreRouter = require('./router/genre')
@@ -68,6 +69,7 @@ app.use('/admin', adminpageRouter)
 app.use('/admin/users', usersRouter)
 app.use('/admin/puzzle', puzzleRouter)
 app.use('/admin/subject', subjectRouter)
+app.use('/subject', subjectsiteRouter)
 
 
 // app.use('/users', usersRouter)
