@@ -78,9 +78,12 @@ app.use('/book', bookRouter)
 app.use('/genre', genreRouter)
 app.use('/profile', profileRouter)
 
-// app.all('*', (req, res) => {
-//     res.redirect("/admin/auth/login");
-// });
+
+app.all('*', (req, res) => {
+    res.status(404).render('404', {
+        layout: "404"
+    });
+});
 
 async function dev() {
     try {

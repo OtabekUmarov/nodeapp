@@ -6,6 +6,7 @@ const Subject = require('../../modeles/subject')
 const Question = require('../../modeles/question')
 const Text = require('../../modeles/text')
 const Matematik = require('../../modeles/matematik')
+const Topishmoq = require('../../modeles/topishmoq')
 
 
 const auth = require('../../middleware/auth')
@@ -20,7 +21,7 @@ router.get('/', auth, async (req, res) => {
   })
 })
 
-router.get('/:id/puzzleimg', auth, async (req, res) => {
+router.get('/:id/puzzleimg/', auth, async (req, res) => {
 
   const subjectId = req.params.id
   res.render('admin/puzzle/puzzleimg', {
@@ -29,7 +30,7 @@ router.get('/:id/puzzleimg', auth, async (req, res) => {
     adminPuzzle: true
   })
 })
-router.get('/:id/text', auth, async (req, res) => {
+router.get('/:id/text/', auth, async (req, res) => {
 
   const subjectId = req.params.id
   res.render('admin/puzzle/text', {
@@ -38,11 +39,18 @@ router.get('/:id/text', auth, async (req, res) => {
     adminPuzzle: true
   })
 })
-router.get('/:id/matematik', auth, async (req, res) => {
-
+router.get('/:id/matematik/', auth, async (req, res) => {
   const subjectId = req.params.id
   res.render('admin/question/matematik', {
     title: 'Matematik boshqotirma',
+    subjectId,
+    adminPuzzle: true
+  })
+})
+router.get('/:id/topishmoq/', auth, async (req, res) => {
+  const subjectId = req.params.id
+  res.render('admin/question/topishmoq', {
+    title: 'Topishmoq',
     subjectId,
     adminPuzzle: true
   })
@@ -62,6 +70,10 @@ router.get('/matematik/delete/:id', async (req, res) => {
   await Matematik.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+router.get('/topishmoq/delete/:id', async (req, res) => {
+  await Topishmoq.findByIdAndDelete(req.params.id)
+  res.redirect('/admin/puzzle')
+})
 
 router.get('/:id/subject', auth, async (req, res) => {
   let id = req.params.id
@@ -74,11 +86,15 @@ router.get('/:id/subject', auth, async (req, res) => {
   const matematik = await Matematik.find({
     subjectId: id
   }).lean()
+  const topishmoq = await Topishmoq.find({
+    subjectId: id
+  }).lean()
   res.render('admin/puzzle/view', {
     title: 'Question',
     question,
     text,
     matematik,
+    topishmoq,
     adminQuestion: true
   })
 })
@@ -111,6 +127,12 @@ router.post('/matematik', auth, async (req, res) => {
   await matematik.save()
   res.redirect('/admin/puzzle')
 
+})
+
+router.post('/topishmoq', auth, async (req, res) => {
+  const topishmoq = await new Topishmoq(req.body)
+  await topishmoq.save()
+  res.redirect('/admin/puzzle')
 })
 
 

@@ -43,6 +43,17 @@
       </td>
       </tr>
       {{/each}}
+      {{#each topishmoq}}
+      <td>{{question}}</td>
+      <td>{{answer}}</td>
+      <td>Topishmoq</td>
+      <td width="150px">
+        <a href="/admin/puzzle/topishmoq/delete/{{_id}}" class="btn btn-primary">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>
