@@ -52,7 +52,8 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: 60 * 60 * 24000
+        maxAge: 60 * 60 * 1200
+        // 60 * 60 => 1 minut
     },
     store
 }))
@@ -84,16 +85,14 @@ app.all('*', (req, res) => {
         layout: "404"
     });
 });
-
+const port = process.env.PORT || '3000'
 async function dev() {
     try {
         await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true
         })
-        // app.listen(process.env.PORT,()=>{
-        //     console.log('Server is running')
-        // })
-        app.listen('3000', () => {
+
+        app.listen(port, () => {
             console.log('Server is running')
         })
     } catch (error) {
