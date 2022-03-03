@@ -32,6 +32,17 @@
       </td>
       </tr>
       {{/each}}
+      {{#each matematik}}
+      <td>{{question}}</td>
+      <td>{{answer}}</td>
+      <td>Matematik</td>
+      <td width="150px">
+        <a href="/admin/puzzle/matematik/delete/{{_id}}" class="btn btn-primary">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      </tr>
+      {{/each}}
     </tbody>
   </table>
 </div>

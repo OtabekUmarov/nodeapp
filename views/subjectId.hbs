@@ -8,37 +8,36 @@
   </div>
 </section>
 
-
-
 <section class="layout_padding section about_dottat">
   <div class="container">
     <div class="row">
       <div class="col-lg-8">
-        {{subject }}
+
         <div class="">
-          <div class="subject-img">
-            {{!-- <img src="/{{subject.img}}" alt=""> --}}
+          <div class="subjectid-img">
+            <img src="/{{subject.img}}" alt="" />
           </div>
-          <div class="subject-title">
-            {{name}}
-          </div>
-          <div class="subject-stitle">
-
-          </div>
-
+          <p>
+            {{subject.content}}
+          </p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="side-left">
           {{#if question}}
-          <div class="side-left-item">
-            <a href="/subject/img/{{id}}">Rasmli boshqotirmalar</a>
-          </div>
+            <div class="side-left-item">
+              <a href="/subject/img/{{id}}">Rasmli boshqotirmalar</a>
+            </div>
           {{/if}}
           {{#if text}}
-          <div class="side-left-item">
-            <a href="/subject/text/{{id}}">Matnli boshqotirmalar</a>
-          </div>
+            <div class="side-left-item">
+              <a href="/subject/text/{{id}}">Matnli boshqotirmalar</a>
+            </div>
+          {{/if}}
+          {{#if matematik}}
+            <div class="side-left-item">
+              <a href="/subject/matematik/{{id}}">Matematik boshqotirmalar</a>
+            </div>
           {{/if}}
         </div>
       </div>

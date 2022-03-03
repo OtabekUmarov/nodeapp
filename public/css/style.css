@@ -64,26 +64,71 @@ form.user .form-control-user{
     object-fit: cover;
 }
 
-.toast .card{
+.toast {
     position: fixed;
-    text-align: center;
     border: unset;
-    right: 50px;
-    bottom: 50px;
-    min-width: 100px;
     padding: 15px;
-    min-height: 40px;
     opacity: 1;
     transition: 1s;
-}
-.toast.error .card {
-    bottom: 120px;
-}
-.toast.hide .card{
-    /* opacity: 0; */
-    right: -100%;
-}
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(1);
 
+}
+.toast .card  {
+    min-height: 100px;
+    min-width: 150px;
+    padding: 50px;
+    font-size: 26px;
+    position: relative;
+}
+.toast.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+.toast.hide .card {
+    transform: scale(0);
+}
+.exit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    background: unset;
+    border: 0;
+    outline: none;
+    color: #fff;
+    width: 20px;
+    height: 20px;
+}
+.exit:after,
+.exit:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1.5px;
+    height: 100%;
+    background: #fff;
+    transform: rotate(45deg);
+    
+}
+.exit:after{
+    transform: rotate(-45deg);
+    
+}
+.exit:focus{
+    background:unset;
+    border: 0;
+    outline: none;
+}
 .subject {
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -171,7 +216,7 @@ form.user .form-control-user{
 #wrapper #content-wrapper #content {
     padding-left: 300px ;
     transition: 0.3s;
-    /* height: calc(100vh - 80px); */
+    height: 100vh ;
 }
 .sidebar-toggled 
 #wrapper #content-wrapper #content {
@@ -205,4 +250,12 @@ form.user .form-control-user{
 .side-left-item:hover {
     background-color: #fff;
 
+}
+.subjectid-img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.subjectid-img img {
+    width: 100%;
+    object-fit: cover;
 }

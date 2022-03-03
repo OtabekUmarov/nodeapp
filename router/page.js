@@ -6,6 +6,7 @@ const router = Router()
 const Subject = require('../modeles/subject')
 const Question = require('../modeles/question')
 const Text = require('../modeles/text')
+const Matematik = require('../modeles/matematik')
 
 
 
@@ -56,11 +57,13 @@ router.get('/subject/:id', async (req, res) => {
     let text = await Text.find({
         subjectId: id
     }).lean()
+    let matematik = await Matematik.find({
+        subjectId: id
+    }).lean()
 
     let subject = await Subject.findById({
         _id: id
     }).lean()
-    console.log("subject", subject);
     res.render('subjectId', {
         title: subject.name + ' fani',
         layout: "site",
@@ -70,6 +73,7 @@ router.get('/subject/:id', async (req, res) => {
         isHome: true,
         question,
         text,
+        matematik,
         id,
         subject
 

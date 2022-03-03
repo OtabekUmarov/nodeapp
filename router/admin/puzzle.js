@@ -5,6 +5,7 @@ const router = Router()
 const Subject = require('../../modeles/subject')
 const Question = require('../../modeles/question')
 const Text = require('../../modeles/text')
+const Matematik = require('../../modeles/matematik')
 
 
 const auth = require('../../middleware/auth')
@@ -37,14 +38,31 @@ router.get('/:id/text', auth, async (req, res) => {
     adminPuzzle: true
   })
 })
+router.get('/:id/matematik', auth, async (req, res) => {
+
+  const subjectId = req.params.id
+  res.render('admin/question/matematik', {
+    title: 'Matematik boshqotirma',
+    subjectId,
+    adminPuzzle: true
+  })
+})
+
 router.get('/puzzleimg/delete/:id', async (req, res) => {
   await Question.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+
 router.get('/text/delete/:id', async (req, res) => {
   await Text.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+
+router.get('/matematik/delete/:id', async (req, res) => {
+  await Matematik.findByIdAndDelete(req.params.id)
+  res.redirect('/admin/puzzle')
+})
+
 router.get('/:id/subject', auth, async (req, res) => {
   let id = req.params.id
   const question = await Question.find({
@@ -53,10 +71,14 @@ router.get('/:id/subject', auth, async (req, res) => {
   const text = await Text.find({
     subjectId: id
   }).lean()
+  const matematik = await Matematik.find({
+    subjectId: id
+  }).lean()
   res.render('admin/puzzle/view', {
     title: 'Question',
     question,
     text,
+    matematik,
     adminQuestion: true
   })
 })
@@ -79,6 +101,14 @@ router.post('/text', auth, async (req, res) => {
 
   const text = await new Text(req.body)
   await text.save()
+  res.redirect('/admin/puzzle')
+
+})
+
+
+router.post('/matematik', auth, async (req, res) => {
+  const matematik = await new Matematik(req.body)
+  await matematik.save()
   res.redirect('/admin/puzzle')
 
 })
