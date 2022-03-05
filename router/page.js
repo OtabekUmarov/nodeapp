@@ -8,6 +8,7 @@ const Question = require('../modeles/question')
 const Text = require('../modeles/text')
 const Matematik = require('../modeles/matematik')
 const Topishmoq = require('../modeles/topishmoq')
+const Interest = require('../modeles/interest')
 
 
 
@@ -57,6 +58,9 @@ router.get('/subject/:id', async (req, res) => {
     let topishmoq = await Topishmoq.find({
         subjectId: id
     }).lean()
+    let interest = await Interest.find({
+        subjectId: id
+    }).lean()
 
     let subject = await Subject.findById({
         _id: id
@@ -72,9 +76,9 @@ router.get('/subject/:id', async (req, res) => {
         text,
         matematik,
         topishmoq,
+        interest,
         id,
         subject
-
     })
 })
 

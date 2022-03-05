@@ -7,6 +7,7 @@ const Question = require('../../modeles/question')
 const Text = require('../../modeles/text')
 const Matematik = require('../../modeles/matematik')
 const Topishmoq = require('../../modeles/topishmoq')
+const Interest = require('../../modeles/interest')
 
 
 const auth = require('../../middleware/auth')
@@ -55,6 +56,14 @@ router.get('/:id/topishmoq/', auth, async (req, res) => {
     adminPuzzle: true
   })
 })
+router.get('/:id/interest/', auth, async (req, res) => {
+  const subjectId = req.params.id
+  res.render('admin/question/interest', {
+    title: 'Qiziqarli savollar',
+    subjectId,
+    adminPuzzle: true
+  })
+})
 
 router.get('/puzzleimg/delete/:id', async (req, res) => {
   await Question.findByIdAndDelete(req.params.id)
@@ -74,6 +83,11 @@ router.get('/topishmoq/delete/:id', async (req, res) => {
   await Topishmoq.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+router.get('/interest/delete/:id', async (req, res) => {
+  await Interest.findByIdAndDelete(req.params.id)
+  res.redirect('/admin/puzzle')
+})
+
 
 router.get('/:id/subject', auth, async (req, res) => {
   let id = req.params.id
@@ -89,15 +103,23 @@ router.get('/:id/subject', auth, async (req, res) => {
   const topishmoq = await Topishmoq.find({
     subjectId: id
   }).lean()
+  const interest = await Interest.find({
+    subjectId: id
+  }).lean()
   res.render('admin/puzzle/view', {
     title: 'Question',
     question,
     text,
     matematik,
     topishmoq,
+    interest,
     adminQuestion: true
   })
 })
+
+
+
+
 router.post('/', auth, async (req, res) => {
   const {
     answer,
@@ -132,6 +154,11 @@ router.post('/matematik', auth, async (req, res) => {
 router.post('/topishmoq', auth, async (req, res) => {
   const topishmoq = await new Topishmoq(req.body)
   await topishmoq.save()
+  res.redirect('/admin/puzzle')
+})
+router.post('/interest', auth, async (req, res) => {
+  const interest = await new Interest(req.body)
+  await interest.save()
   res.redirect('/admin/puzzle')
 })
 

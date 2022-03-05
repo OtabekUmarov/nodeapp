@@ -7,6 +7,7 @@ const Question = require('../modeles/question')
 const Text = require('../modeles/text')
 const Matematik = require('../modeles/matematik')
 const Topishmoq = require('../modeles/topishmoq')
+const Interest = require('../modeles/interest')
 
 
 // Rasmli boshqotirmalar
@@ -31,6 +32,9 @@ router.get('/img/:id', async (req, res) => {
   let matematikCount = await Matematik.find({
     subjectId: id
   }).lean()
+  let interestCount = await Interest.find({
+    subjectId: id
+  }).lean()
   res.render('subject/img', {
     title: 'Rasmli boshqotirmalar',
     layout: "site",
@@ -43,6 +47,7 @@ router.get('/img/:id', async (req, res) => {
     textCount,
     matematikCount,
     topishmoqCount,
+    interestCount,
     subjectId: id
 
   })
@@ -84,6 +89,9 @@ router.get('/text/:id', async (req, res) => {
   let topishmoqCount = await Topishmoq.find({
     subjectId: id
   }).lean()
+  let interestCount = await Interest.find({
+    subjectId: id
+  }).lean()
   res.render('subject/text', {
     title: 'Matnli boshqotirmalar',
     layout: "site",
@@ -96,6 +104,7 @@ router.get('/text/:id', async (req, res) => {
     textCount,
     matematikCount,
     topishmoqCount,
+    interestCount,
     subjectId: id
 
   })
@@ -137,6 +146,9 @@ router.get('/matematik/:id', async (req, res) => {
   let topishmoqCount = await Topishmoq.find({
     subjectId: id
   }).lean()
+  let interestCount = await Interest.find({
+    subjectId: id
+  }).lean()
   res.render('subject/matematik', {
     title: 'Matematik boshqotirmalar',
     layout: "site",
@@ -148,6 +160,7 @@ router.get('/matematik/:id', async (req, res) => {
     questionCount,
     matematikCount,
     topishmoqCount,
+    interestCount,
     textCount,
     subjectId: id
   })
@@ -166,7 +179,7 @@ router.post('/answer/matematik/:id', async (req, res) => {
   res.redirect('/subject/matematik/' + req.body.subjectId)
 })
 
-// topishmoq boshqotirmalar
+// topishmoqlar
 router.get('/topishmoq/:id', async (req, res) => {
   const id = req.params.id
   let count = await Topishmoq.find({
@@ -188,7 +201,9 @@ router.get('/topishmoq/:id', async (req, res) => {
   let topishmoqCount = await Topishmoq.find({
     subjectId: id
   }).lean()
-
+  let interestCount = await Interest.find({
+    subjectId: id
+  }).lean()
   res.render('subject/topishmoq', {
     title: 'Topishmoqlar',
     layout: "site",
@@ -201,6 +216,7 @@ router.get('/topishmoq/:id', async (req, res) => {
     matematikCount,
     topishmoqCount,
     textCount,
+    interestCount,
     subjectId: id
   })
 })
@@ -216,6 +232,63 @@ router.post('/answer/topishmoq/:id', async (req, res) => {
     req.flash("error", "Noto'gri javob")
   }
   res.redirect('/subject/topishmoq/' + req.body.subjectId)
+})
+
+
+// Qiziqarli savollar
+router.get('/interest/:id', async (req, res) => {
+  const id = req.params.id
+  let count = await Interest.find({
+    subjectId: id
+  }).count()
+  let random = Math.floor(Math.random() * count)
+  let question = await Interest.findOne({
+    subjectId: id
+  }).skip(random).lean()
+  let questionCount = await Question.find({
+    subjectId: id
+  }).lean()
+  let textCount = await Text.find({
+    subjectId: id
+  }).lean()
+  let matematikCount = await Matematik.find({
+    subjectId: id
+  }).lean()
+  let topishmoqCount = await Topishmoq.find({
+    subjectId: id
+  }).lean()
+  let interestCount = await Interest.find({
+    subjectId: id
+  }).lean()
+
+  res.render('subject/interest', {
+    title: 'Qiziqarli topishmoqlar',
+    layout: "site",
+    success: req.flash('success'),
+    error: req.flash('error'),
+    inner: "inner_page",
+    isHome: true,
+    question,
+    questionCount,
+    matematikCount,
+    topishmoqCount,
+    textCount,
+    interestCount,
+    subjectId: id
+  })
+})
+router.post('/answer/interest/:id', async (req, res) => {
+  let _id = req.params.id
+  const {
+    answer
+  } = req.body
+  const question = await Interest.findById(_id)
+  if (answer.toLowerCase() == question.answer && question.answer.toLowerCase()) {
+    req.flash("success", "To'gri javob")
+  } else {
+    req.flash("error", "Noto'gri javob")
+  }
+  res.redirect('/subject/interest/' + req.body.subjectId)
 })
 
 
