@@ -32,7 +32,12 @@ const hbs = exphbs.create({
     defaultLayout: 'admin',
     extname: 'hbs'
 })
-
+// hbs.handlebars.registerHelper('ifCond', function (v1, v2, v3, v4, v5) {
+//     if (v1 || v2 || v3 || v4 || v5) {
+//         return true
+//     } else
+//         return false
+// });
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
@@ -91,7 +96,6 @@ async function dev() {
         await mongoose.connect(keys.MONGODB_URI, {
             useNewUrlParser: true
         })
-
         app.listen(port, () => {
             console.log('Server is running')
         })

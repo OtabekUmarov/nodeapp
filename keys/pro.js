@@ -4,9 +4,9 @@
 //     SYSTEM_EMAIL: process.env.SYSTEM_EMAIL,
 //     PASSWORD_EMAIL: process.env.PASSWORD_EMAIL
 // }
+// BASE_URL: 'localhost',
 
 module.exports = {
-    BASE_URL: 'localhost',
     MONGODB_URI: 'mongodb+srv://Zyn1e:a2z0i0z2@cluster0.ovlub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
 
     SESSION_SECRET: 'some secret key',
