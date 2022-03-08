@@ -8,6 +8,7 @@ const Text = require('../../modeles/text')
 const Matematik = require('../../modeles/matematik')
 const Topishmoq = require('../../modeles/topishmoq')
 const Interest = require('../../modeles/interest')
+const Critical = require('../../modeles/critical')
 
 
 const auth = require('../../middleware/auth')
@@ -18,7 +19,7 @@ router.get('/', auth, async (req, res) => {
   res.render('admin/puzzle', {
     title: 'Boshqotirmalar',
     subject,
-    adminQuestion: true
+    adminPuzzle: true
   })
 })
 
@@ -64,6 +65,14 @@ router.get('/:id/interest/', auth, async (req, res) => {
     adminPuzzle: true
   })
 })
+router.get('/:id/critical/', auth, async (req, res) => {
+  const subjectId = req.params.id
+  res.render('admin/question/critical', {
+    title: 'Mantiqiy savollar',
+    subjectId,
+    adminPuzzle: true
+  })
+})
 
 router.get('/puzzleimg/delete/:id', async (req, res) => {
   await Question.findByIdAndDelete(req.params.id)
@@ -87,6 +96,10 @@ router.get('/interest/delete/:id', async (req, res) => {
   await Interest.findByIdAndDelete(req.params.id)
   res.redirect('/admin/puzzle')
 })
+router.get('/critical/delete/:id', async (req, res) => {
+  await Critical.findByIdAndDelete(req.params.id)
+  res.redirect('/admin/puzzle')
+})
 
 
 router.get('/:id/subject', auth, async (req, res) => {
@@ -106,12 +119,16 @@ router.get('/:id/subject', auth, async (req, res) => {
   const interest = await Interest.find({
     subjectId: id
   }).lean()
+  const critical = await Critical.find({
+    subjectId: id
+  }).lean()
   res.render('admin/puzzle/view', {
     title: 'Question',
     question,
     text,
     matematik,
     topishmoq,
+    critical,
     interest,
     adminQuestion: true
   })
@@ -159,6 +176,11 @@ router.post('/topishmoq', auth, async (req, res) => {
 router.post('/interest', auth, async (req, res) => {
   const interest = await new Interest(req.body)
   await interest.save()
+  res.redirect('/admin/puzzle')
+})
+router.post('/critical', auth, async (req, res) => {
+  const critical = await new Critical(req.body)
+  await critical.save()
   res.redirect('/admin/puzzle')
 })
 

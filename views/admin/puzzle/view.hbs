@@ -10,7 +10,7 @@
     </thead>
     <tbody>
       {{#each question}}
-      <td ><img width="100px" src="/{{question}}" alt="" /></td>
+      <td><img width="100px" src="/{{question}}" alt="" /></td>
       <td>{{answer}}</td>
       <td>Rasmli</td>
       <td width="150px">
@@ -58,6 +58,17 @@
       <td>{{question}}</td>
       <td>{{answer}}</td>
       <td>Qiziqarli savollar</td>
+      <td width="150px">
+        <a href="/admin/puzzle/interest/delete/{{_id}}" class="btn btn-primary">
+          <i class="fas fa-trash"></i>
+        </a>
+      </td>
+      </tr>
+      {{/each}}
+      {{#each critical}}
+      <td>{{question}}</td>
+      <td>{{answer}}</td>
+      <td>Mantiqiy savollar</td>
       <td width="150px">
         <a href="/admin/puzzle/interest/delete/{{_id}}" class="btn btn-primary">
           <i class="fas fa-trash"></i>

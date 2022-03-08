@@ -32,6 +32,10 @@ const hbs = exphbs.create({
     defaultLayout: 'admin',
     extname: 'hbs'
 })
+
+hbs.handlebars.registerHelper("increment", function (index) {
+    return parseInt(index) + 1
+})
 // hbs.handlebars.registerHelper('ifCond', function (v1, v2, v3, v4, v5) {
 //     if (v1 || v2 || v3 || v4 || v5) {
 //         return true

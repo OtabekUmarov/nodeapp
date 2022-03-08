@@ -9,6 +9,7 @@ const Text = require('../modeles/text')
 const Matematik = require('../modeles/matematik')
 const Topishmoq = require('../modeles/topishmoq')
 const Interest = require('../modeles/interest')
+const Critical = require('../modeles/critical')
 
 
 
@@ -44,43 +45,46 @@ router.get('/subjects', async (req, res) => {
     })
 })
 
-router.get('/subject/:id', async (req, res) => {
-    const id = req.params.id
-    let question = await Question.find({
-        subjectId: id
-    }).lean()
-    let text = await Text.find({
-        subjectId: id
-    }).lean()
-    let matematik = await Matematik.find({
-        subjectId: id
-    }).lean()
-    let topishmoq = await Topishmoq.find({
-        subjectId: id
-    }).lean()
-    let interest = await Interest.find({
-        subjectId: id
-    }).lean()
-
-    let subject = await Subject.findById({
-        _id: id
-    }).lean()
-    res.render('subjectId', {
-        title: subject.name + ' fani',
-        layout: "site",
-        success: req.flash('success'),
-        error: req.flash('error'),
-        inner: "inner_page",
-        isHome: true,
-        question,
-        text,
-        matematik,
-        topishmoq,
-        interest,
-        id,
-        subject
-    })
-})
+// router.get('/subject/:id', async (req, res) => {
+//     const id = req.params.id
+//     let question = await Question.find({
+//         subjectId: id
+//     }).lean()
+//     let text = await Text.find({
+//         subjectId: id
+//     }).lean()
+//     let matematik = await Matematik.find({
+//         subjectId: id
+//     }).lean()
+//     let topishmoq = await Topishmoq.find({
+//         subjectId: id
+//     }).lean()
+//     let interest = await Interest.find({
+//         subjectId: id
+//     }).lean()
+//     let critical = await Critical.find({
+//         subjectId: id
+//     }).lean()
+//     let subject = await Subject.findById({
+//         _id: id
+//     }).lean()
+//     res.render('subjectId', {
+//         title: subject.name + ' fani',
+//         layout: "site",
+//         success: req.flash('success'),
+//         error: req.flash('error'),
+//         inner: "inner_page",
+//         isHome: true,
+//         question,
+//         critical,
+//         text,
+//         matematik,
+//         topishmoq,
+//         interest,
+//         id,
+//         subject
+//     })
+// })
 
 // router.get('/subject/:id', async (req, res) => {
 //     const id = req.params.id
@@ -123,19 +127,6 @@ router.post('/answer/:id', async (req, res) => {
 
 
 
-// router.post('/search', auth, async (req, res) => {
-//     const {
-//         st
-//     } = req.body
-//     const books = await Book.find({
-//         name: {
-//             $regex: '.*' + st.toLowerCase() + '.*'
-//         }
-//     }).select('_id name').lean()
-//     res.render('search', {
-//         title: `${st} so'zi bo'yicha qidiruv natijasi:`,
-//         books
-//     })
-// })
+
 
 module.exports = router

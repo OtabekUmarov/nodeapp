@@ -259,3 +259,17 @@ form.user .form-control-user{
     width: 100%;
     object-fit: cover;
 }
+
+.response {
+    position: absolute;
+    top: 100%;
+    /* padding: 10px; */
+    /* padding-left: 20px; */
+    background-color: #fff;
+    width: 100%;
+}
+.response a {
+    display: block;
+    margin: 10px;
+    /* color: #000; */
+}

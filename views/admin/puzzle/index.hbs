@@ -1,14 +1,9 @@
 <div class="table-responsive">
-  <table
-    class="table table-bordered"
-    id="dataTable"
-    width="70%"
-    cellspacing="0"
-  >
+  <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
     <thead>
       <tr>
         <th colspan="2">Fan nomi</th>
-        <th width="200px" colspan="5" style="text-align: center;">Boshqotirma
+        <th width="200px" colspan="6" style="text-align: center;">Boshqotirma
           turlari</th>
       </tr>
     </thead>
@@ -21,41 +16,47 @@
         <th>Matematik</th>
         <th>Topishmoq</th>
         <th>Qiziqarli savollar</th>
+        <th>Mantiqiy</th>
       </tr>
     </thead>
     <tbody>
       {{#each subject}}
-        <tr>
-          <td>{{@index}}</td>
-          <td><a href="/admin/puzzle/{{_id}}/subject/">
-              {{name}}
-            </a></td>
-          <td>
-            <a href="/admin/puzzle/{{_id}}/text/" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </a>
-          </td>
-          <td>
-            <a href="/admin/puzzle/{{_id}}/puzzleimg/" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </a>
-          </td>
-          <td>
-            <a href="/admin/puzzle/{{_id}}/matematik/" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </a>
-          </td>
-          <td>
-            <a href="/admin/puzzle/{{_id}}/topishmoq/" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </a>
-          </td>
-          <td>
-            <a href="/admin/puzzle/{{_id}}/interest/" class="btn btn-primary">
-              <i class="fas fa-plus"></i>
-            </a>
-          </td>
-        </tr>
+      <tr>
+        <td>{{increment @index}}</td>
+        <td><a href="/admin/puzzle/{{_id}}/subject/">
+            {{name}}
+          </a></td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/text/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/puzzleimg/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/matematik/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/topishmoq/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/interest/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+        <td>
+          <a href="/admin/puzzle/{{_id}}/critical/" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+          </a>
+        </td>
+      </tr>
       {{/each}}
     </tbody>
   </table>

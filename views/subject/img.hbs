@@ -16,58 +16,51 @@
           <img src="/{{question.question}}" alt="" />
 
         </div>
-        <form
-          action="/subject/answer/img/{{question._id}}"
-          method="post"
-          class="user"
-        >
+        <form action="/subject/answer/img/{{question._id}}" method="post" class="user">
           <input type="hidden" name="_csrf" value="{{csrf}}" />
           <input type="hidden" name="subjectId" value="{{subjectId}}" />
           <div class="form-group">
             <label>
               Javobni kiriting
-              <input
-                type="text"
-                class="form-control form-control-user mt-1"
-                name="answer"
-                placeholder="Javobni kiriting"
-                required
-              />
+              <input type="text" class="form-control form-control-user mt-1" name="answer"
+                placeholder="Javobni kiriting" required />
             </label>
           </div>
-          <button
-            type="submit"
-            class="my-btn btn btn-primary btn-user btn-block"
-          >Tekshirish</button>
+          <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Tekshirish</button>
         </form>
       </div>
       <div class="col-lg-4">
         <div class="side-left">
           {{#if questionCount}}
-            <div class="side-left-item">
-              <a href="/subject/img/{{subjectId}}">Rasmli boshqotirmalar</a>
-            </div>
+          <div class="side-left-item">
+            <a href="/subject/img/{{subjectId}}">Rasmli boshqotirmalar</a>
+          </div>
           {{/if}}
           {{#if textCount}}
-            <div class="side-left-item">
-              <a href="/subject/text/{{subjectId}}">Matnli boshqotirmalar</a>
-            </div>
+          <div class="side-left-item">
+            <a href="/subject/text/{{subjectId}}">Matnli boshqotirmalar</a>
+          </div>
           {{/if}}
           {{#if matematikCount}}
-            <div class="side-left-item">
-              <a href="/subject/matematik/{{subjectId}}">Matematik
-                boshqotirmalar</a>
-            </div>
+          <div class="side-left-item">
+            <a href="/subject/matematik/{{subjectId}}">Matematik
+              boshqotirmalar</a>
+          </div>
           {{/if}}
           {{#if topishmoqCount}}
-            <div class="side-left-item">
-              <a href="/subject/topishmoq/{{subjectId}}">Topishmoqlar</a>
-            </div>
+          <div class="side-left-item">
+            <a href="/subject/topishmoq/{{subjectId}}">Topishmoqlar</a>
+          </div>
           {{/if}}
           {{#if interestCount}}
-            <div class="side-left-item">
-              <a href="/subject/interest/{{subjectId}}">Qiziqarli savollar</a>
-            </div>
+          <div class="side-left-item">
+            <a href="/subject/interest/{{subjectId}}">Qiziqarli savollar</a>
+          </div>
+          {{/if}}
+          {{#if criticalCount}}
+          <div class="side-left-item">
+            <a href="/subject/interest/{{subjectId}}">Mantiqiy savollar</a>
+          </div>
           {{/if}}
         </div>
       </div>
