@@ -58,6 +58,19 @@
       <span>Boshqotirmalar</span></a>
   </li>
   {{/if}}
+  {{#if adminMessage}}
+  <li class="nav-item active">
+    <a class="nav-link" href="/admin/message">
+      <i class="fas fa-question"></i>
+      <span>Xabarlar</span></a>
+  </li>
+  {{else}}
+  <li class="nav-item">
+    <a class="nav-link" href="/admin/message">
+      <i class="fas fa-question"></i>
+      <span>Xabarlar</span></a>
+  </li>
+  {{/if}}
   <hr class="sidebar-divider" />
 
   <div class="text-center d-none d-md-inline">

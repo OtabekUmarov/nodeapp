@@ -13,6 +13,7 @@ const authRouter = require('./router/admin/auth')
 const usersRouter = require('./router/admin/users')
 const puzzleRouter = require('./router/admin/puzzle')
 const subjectRouter = require('./router/admin/subject')
+const messageRouter = require('./router/admin/message')
 
 
 const pageRouter = require('./router/page')
@@ -61,7 +62,7 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge:1000 * 60 * 60 * 0.5
+        maxAge: 1000 * 60 * 60 * 0.5
         // 1000 * 60 * 60 * 24 * 7 => 1 hafta 
     },
     store
@@ -79,6 +80,7 @@ app.use('/admin', adminpageRouter)
 app.use('/admin/users', usersRouter)
 app.use('/admin/puzzle', puzzleRouter)
 app.use('/admin/subject', subjectRouter)
+app.use('/admin/message', messageRouter)
 app.use('/subject', subjectsiteRouter)
 
 

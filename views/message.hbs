@@ -1,0 +1,70 @@
+<section class="main_full inner_page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="full">
+        <h3>{{title}}</h3>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end section -->
+
+<!-- about section -->
+<section class="layout_padding section about_dottat">
+  <div class="container">
+    <form action="/message/send/" method="post">
+      <div class="row">
+        <input type="hidden" name="_csrf" value="{{csrf}}" />
+        <input type="hidden" name="subjectId" value="{{subjectId}}" />
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <label>
+              Ismingiz
+              <input type="text" class="form-control form-control-user mt-2" name="name" placeholder="Ismingiz kiriting"
+                required />
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <label>
+              Familiya
+              <input type="text" class="form-control form-control-user mt-2" name="surname"
+                placeholder="Familiyangizni kiriting" required />
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <label>
+              Email
+              <input type="email" class="form-control form-control-user mt-2" name="email"
+                placeholder="Emailni kiriting" required />
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <label>
+              Savol yozing
+              <textarea name="question" class="form-control form-control-user mt-2"
+                placeholder="Savolni kiriting"></textarea>
+            </label>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="form-group">
+            <label>
+              Javob yozing
+              <textarea name="answer" class="form-control form-control-user mt-2"
+                placeholder="Javobni kiriting"></textarea>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="my-btn btn btn-primary btn-user btn-block">Yuborish</button>
+      </div>
+    </form>
+  </div>
+</section>

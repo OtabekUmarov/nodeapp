@@ -1,0 +1,34 @@
+<div class="table-responsive">
+  <table class="table table-bordered" id="dataTable" width="70%" cellspacing="0">
+    <thead>
+      <tr>
+        <th width="50px">№</th>
+        <th>Ism familiyasi</th>
+        <th>Email </th>
+        <th>Savol</th>
+        <th>Javob</th>
+        <th>Statusi</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each message}}
+      <tr>
+        <td>{{increment @index}}</td>
+        <td>{{name}} {{surname}}</td>
+        <td>{{email}}</td>
+        <td>{{question}}</td>
+        <td>{{answer}}</td>
+        <td>{{status}}</td>
+        <td>
+          <a href="/admin/message/check/1/{{_id}}" class="btn btn-success" data-toggle="tooltip"
+            data-original-title="Qabul qilish"><i class="fas fa-check"></i></a>
+          <a href="/admin/message/check/2/{{_id}}" class="btn btn-danger" data-toggle="tooltip"
+            data-original-title="Rad etish"><i class="fas fa-trash"></i></a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+</div>
