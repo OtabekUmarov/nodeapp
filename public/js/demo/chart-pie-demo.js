@@ -2,14 +2,18 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
-// Pie Chart Example
+
 var ctx = document.getElementById("myPieChart");
+let user = document.getElementById("user").value
+let subject = document.getElementById("subject").value
+let questionCount = document.getElementById("questionCount").value
+let message = document.getElementById("message").value
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral", "Social"],
+    labels: ["Foydalanuvchilar", "Fanlar", "Boshqotirmalar", "Kelib tushgan savollar"],
     datasets: [{
-      data: [55, 30, 15],
+      data: [user, subject, questionCount, message],
       backgroundColor: ['#4e73df', '#1cc88a', '#36b9cc'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

@@ -273,3 +273,45 @@ form.user .form-control-user{
     margin: 10px;
     /* color: #000; */
 }
+
+.topbar #sidebarToggleTop{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    transition: 0.3s;
+}
+.sidebar-toggled .sidebar {
+    z-index: 9999;
+}
+@media (max-width:767px) {
+    .sidebar {
+        left: -300px;
+    }
+    #wrapper #content-wrapper #content {
+        padding-left: 0;    
+    }
+    .sidebar-toggled .sidebar {
+        left: 0 !important;
+        width: 300px !important;
+        z-index: 9999;
+    }
+    .sidebar .nav-item .nav-link {
+        width: 100%;
+        text-align: left;
+    }
+    .sidebar .nav-item .nav-link span {
+        display: inline-block;
+    }
+    .sidebar-toggled #wrapper #content-wrapper #content {
+        padding-left: 0;
+    }
+    /* .topbar #sidebarToggleTop:active {
+        position: absolute;
+        left: 300px;
+        z-index: 9999;
+    } */
+    .sidebar-toggled .topbar #sidebarToggleTop {
+        left: 250px;
+        z-index: 99999;
+    }
+}

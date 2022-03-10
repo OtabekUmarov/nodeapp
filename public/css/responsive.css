@@ -51,6 +51,7 @@ button.navbar-toggler span:nth-child(1) {
         float: left;
         width: 50%;
     }
+
 }
 
 @media (max-width: 590px) {
