@@ -694,17 +694,18 @@ form#commant_form div.field textarea.custom_field {
 }
 
 .blue_bt {
-    width: 265px;
-    height: 65px;
+    width: 235px;
+    height: 55px;
     background: #0e24cb;
     color: #fff;
     text-align: center;
-    line-height: 65px;
+    line-height: 55px;
     font-size: 20px;
     font-weight: 400;
-    margin: 45px auto 0;
+    margin: 30px auto 0;
     display: flex;
     justify-content: center;
+    border-radius: 5px;
 }
 
 .blue_bt:hover,
@@ -724,7 +725,7 @@ form#commant_form div.field textarea.custom_field {
 }
 
 .cours_timging_bg {
-    background: url("images/cours_bg.jpg");
+    background: url("../img/cours_bg.jpg");
     min-height: 780px;
     width: 100%;
     margin-top: 50px;
