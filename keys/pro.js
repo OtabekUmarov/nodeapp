@@ -1,8 +1,8 @@
 module.exports = {
-    MONGODB_URI: process.env.MONGODB_URI,
-    SESSION_SECRET: process.env.SESSION_SECRET,
-    SYSTEM_EMAIL: process.env.SYSTEM_EMAIL,
-    PASSWORD_EMAIL: process.env.PASSWORD_EMAIL
+    MONGODB_URI: process.env.MONGODB_URI || 'mongodb+srv://Zyn1e:a2z0i0z2@cluster0.ovlub.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+    SESSION_SECRET: process.env.SESSION_SECRET || 'some secret key',
+    SYSTEM_EMAIL: process.env.SYSTEM_EMAIL || 'umarovotabek0220@gmail.com',
+    PASSWORD_EMAIL: process.env.PASSWORD_EMAIL|| 'Otabek1999#'
 }
 // BASE_URL: 'localhost',
 
