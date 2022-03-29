@@ -44,10 +44,17 @@
         } else {
           setTimeout(() => {
             el.classList.add('hide')
-          }, time + 500);
+          }, time + 300);
         }
         index++
       })
+    }
+    function exitToast1(){
+      {{!-- let toast = document.querySelectorAll(".toast")
+      toast.forEach((el) => {
+            el.classList.add('hide')
+      }) --}}
+      exitToast(0)
     }
     exitToast(3000)
   </script>
