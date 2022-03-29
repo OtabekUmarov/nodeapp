@@ -29,7 +29,7 @@ router.get('/', auth, async (req, res) => {
 
   let questionCount = question + text + matematik + topishmoq + interest + critical
   res.render('admin', {
-    title: 'Dashboard',
+    title: 'Bosh sahifa',
     adminHome: true,
     user,
     subject,
