@@ -180,7 +180,6 @@ form.user .form-control-user{
 .questions {
     border-radius: 10px;
     border: 1px solid #ccc;
-    /* padding: 15px; */
 }
 .question p {
     font-size: 20px;
@@ -263,15 +262,12 @@ form.user .form-control-user{
 .response {
     position: absolute;
     top: 100%;
-    /* padding: 10px; */
-    /* padding-left: 20px; */
     background-color: #fff;
     width: 100%;
 }
 .response a {
     display: block;
     margin: 10px;
-    /* color: #000; */
 }
 
 .topbar #sidebarToggleTop{
@@ -305,22 +301,48 @@ form.user .form-control-user{
     .sidebar-toggled #wrapper #content-wrapper #content {
         padding-left: 0;
     }
-    /* .topbar #sidebarToggleTop:active {
-        position: absolute;
-        left: 300px;
-        z-index: 9999;
-    } */
+
     .sidebar-toggled .topbar #sidebarToggleTop {
         left: 250px;
         z-index: 99999;
     }
 }
-
+.slider_cont_inner {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
 .overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     background-color: rgba(0,0,0,0.8);
+}
+@media (max-width: 991px) {
+    .heading_s1 h2 {
+        font-size: 26px;
+        line-height: 22px;
+    }
+    .navbar-toggleable-md .navbar-collapse {
+        margin-left: unset;
+    }
+    .site_information ul {
+        width: 100%;
+    }
+    .main_full.inner_page h3 {
+        font-size: 26px;
+    }
+    .logo img {
+        height: 60px;
+    }
+    
+    h3 {
+        font-size: 24px;
+    }
+    .slide_cont h3 {
+        font-size: 28px;
+    }
 }
