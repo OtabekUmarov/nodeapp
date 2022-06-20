@@ -62,7 +62,7 @@ app.use(session({
     saveUninitialized: false,
     resave: false,
     cookie: {
-        maxAge: 1000 * 60 * 60 * 0.5
+        maxAge: 1000 * 60 * 60 * 0.5 * 24 * 24
         // 1000 * 60 * 60 * 24 * 7 => 1 hafta 
     },
     store
@@ -96,6 +96,8 @@ app.all('*', (req, res) => {
         layout: "404"
     });
 });
+
+
 const port = process.env.PORT || '3000'
 async function dev() {
     try {
