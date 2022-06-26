@@ -15,7 +15,7 @@
   {{#if error}}
   <div class="toast error">
     <div class="card bg-danger text-white">
-      <button class="exit" onclick="exitToast(0)"></button>
+      <button class="exit" onclick="exitToast1()"></button>
       <div class="card-body">{{error}}</div>
     </div>
   </div>
@@ -23,16 +23,17 @@
   {{#if success}}
   <div class="toast ">
     <div class="card bg-success text-white">
-      <button class="exit" onclick="exitToast(0)"></button>
+      <button class="exit" onclick="exitToast1()"></button>
       <div class="card-body">{{success}}</div>
     </div>
   </div>
   {{/if}}
-  {{> sitefooter}}
+  {{!-- {{> sitefooter}} --}}
   {{> sitescripts}}
 
   <script>
     function exitToast(time) {
+      time = time || 0
       let toast = document.querySelectorAll(".toast")
       let index = 0
       toast.forEach((el) => {
@@ -43,10 +44,17 @@
         } else {
           setTimeout(() => {
             el.classList.add('hide')
-          }, time + 500);
+          }, time + 300);
         }
         index++
       })
+    }
+    function exitToast1(){
+      {{!-- let toast = document.querySelectorAll(".toast")
+      toast.forEach((el) => {
+            el.classList.add('hide')
+      }) --}}
+      exitToast(0)
     }
     exitToast(3000)
   </script>

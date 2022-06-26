@@ -21,6 +21,15 @@ router.get('/create', auth, (req, res) => {
     adminSubject: true,
   })
 })
+router.get('/update/:id', auth, async (req, res) => {
+  let _id = req.params.id
+  let subject = await Subject.findOne({_id}).lean()
+  res.render('admin/subject/update', {
+    title: 'Fanlar',
+    adminSubject: true,
+    subject
+  })
+})
 router.get('/delete/:id', auth, async (req, res) => {
   let _id = req.params.id
   await Subject.findByIdAndDelete(
@@ -40,6 +49,12 @@ router.post('/', auth, async (req, res) => {
     img
   })
   await sub.save()
+  res.redirect('/admin/subject')
+})
+
+router.post('/save', auth, async (req, res) => {
+  const { _id, name, content } = req.body
+  await Subject.findByIdAndUpdate({_id}, {name,content})
   res.redirect('/admin/subject')
 
 })

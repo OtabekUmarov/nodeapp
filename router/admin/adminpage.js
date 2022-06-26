@@ -9,11 +9,32 @@ const Matematik = require('../../modeles/matematik')
 const Topishmoq = require('../../modeles/topishmoq')
 const Interest = require('../../modeles/interest')
 const Critical = require('../../modeles/critical')
+const User = require('../../modeles/user')
+const Subject = require('../../modeles/subject')
+const Message = require('../../modeles/message')
 
-router.get('/', auth, (req, res) => {
+router.get('/', auth, async (req, res) => {
+
+  const user = await User.find().count()
+  const subject = await Subject.find().count()
+
+  const question = await Question.find().count()
+  const text = await Text.find().count()
+  const matematik = await Matematik.find().count()
+  const topishmoq = await Topishmoq.find().count()
+  const interest = await Interest.find().count()
+  const critical = await Critical.find().count()
+
+  const message = await Message.find().count()
+
+  let questionCount = question + text + matematik + topishmoq + interest + critical
   res.render('admin', {
     title: 'Bosh sahifa',
-    adminHome: true
+    adminHome: true,
+    user,
+    subject,
+    questionCount,
+    message
   })
 })
 

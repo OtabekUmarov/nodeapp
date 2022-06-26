@@ -5,8 +5,6 @@ const session = require('express-session')
 const csrf = require('csurf')
 const MongoStore = require('connect-mongodb-session')(session)
 const flash = require('connect-flash') // !
-const helmet = require('helmet')
-const compression = require('compression')
 // Routerlar
 const adminpageRouter = require('./router/admin/adminpage')
 const authRouter = require('./router/admin/auth')
@@ -26,7 +24,6 @@ const profileRouter = require('./router/profile')
 // middleWare lar
 const varMid = require('./middleware/var')
 const fileMiddleware = require('./middleware/file')
-const keys = require('./keys/pro')
 
 const app = express()
 const hbs = exphbs.create({
@@ -37,12 +34,8 @@ const hbs = exphbs.create({
 hbs.handlebars.registerHelper("increment", function (index) {
     return parseInt(index) + 1
 })
-// hbs.handlebars.registerHelper('ifCond', function (v1, v2, v3, v4, v5) {
-//     if (v1 || v2 || v3 || v4 || v5) {
-//         return true
-//     } else
-//         return false
-// });
+
+const MONGODB_URI = 'mongodb://127.0.0.1:27017/school'
 
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
@@ -55,10 +48,10 @@ app.use('/images', express.static('images')) // !
 
 const store = new MongoStore({
     collection: 'session',
-    uri: keys.MONGODB_URI
+    uri: MONGODB_URI
 })
 app.use(session({
-    secret: keys.SESSION_SECRET,
+    secret: 'assa asaasr rte hjghjkhg',
     saveUninitialized: false,
     resave: false,
     cookie: {
@@ -72,8 +65,6 @@ app.use(fileMiddleware.single('img'))
 app.use(csrf())
 app.use(flash()) // !
 app.use(varMid)
-app.use(helmet())
-app.use(compression())
 
 app.use(pageRouter)
 app.use('/admin', adminpageRouter)
@@ -96,16 +87,14 @@ app.all('*', (req, res) => {
         layout: "404"
     });
 });
-
-
-const port = process.env.PORT || '3000'
+const PORT = 3008
 async function dev() {
     try {
-        await mongoose.connect(keys.MONGODB_URI, {
+        await mongoose.connect(MONGODB_URI, {
             useNewUrlParser: true
         })
-        app.listen(port, () => {
-            console.log('Server is running')
+        app.listen(PORT, () => {
+            console.log(`Server is running ${PORT}`)
         })
     } catch (error) {
         console.log(error)
